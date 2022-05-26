@@ -12,23 +12,26 @@
     <link rel="stylesheet" href="./styles/modal.css">
     <link rel="stylesheet" href="./styles/sidebar.css">
 
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="./scripts/jquery-1.10.2.js"></script>
     <script>
-        $(document).ready(function () {
+        $().ready(function () {
             var level = 1;
-            $("#main").load("./level" + level + "/level" + level + ".html");
+
+            function loadComponent() {
+                $.get("./level" + level + "/level" + level + "modal.html", function (modal) {
+                    $("#page-content").prepend(modal);
+                }, 'html');
+                $("#sidebarLevel").load("./level" + level + "/level" + level + "sidebar.html");
+                $("#main").load("./level" + level + "/level" + level + ".html");
+            }
+
+            loadComponent();
 
             $("#nextLevel").click(function () {
                 level++;
-                $("#main").load("./level" + level + "/level" + level + ".html");
+                loadComponent();
             });
         });
-        // $(function () {
-        //     var level = 0;
-
-
-        //     $("#main").load("./level1/level1.html");
-        // });
     </script>
     <script type="text/javascript" src="./scripts/app.js"></script>
     <script type="text/javascript" src="./level2/draganddrop.js"></script>
@@ -37,41 +40,12 @@
 
 <body>
 
-    <div class="page-content">
-        <div class="modal" id="modalMarker1">
-            <div class="modal-content">
-                <h1>Hai trovato il primo oggetto!</h1>
-            </div>
-        </div>
-
-        <div class="modal" id="modalMarker2">
-            <div class="modal-content">
-                <h1>Hai trovato il secondo oggetto!</h1>
-            </div>
-        </div>
-
-        <div class="modal" id="modalMarker3">
-            <div class="modal-content">
-                <h1>Hai trovato il terzo oggetto!</h1>
-            </div>
-        </div>
-
-        <div class="modal" id="modalMarker4">
-            <div class="modal-content">
-                <h1>Hai trovato il quarto oggetto!</h1>
-            </div>
-        </div>
+    <div class="page-content" id="page-content">
 
         <div id="mySidebar" class="sidebar">
             <div class="sidebar-content">
-                <div class="reveal">
-                    <h1>Livello 1</h1>
-                    <p>Ispezione l'immagine e trova gli oggetti nascosti con cui interagire!</p>
-                </div>
+                <div class="reveal" id="sidebarLevel">
 
-                <div class="level-score reveal">
-                    <p>Oggetti trovati:</p>
-                    <h2 id="score-label">0/4</h2>
                 </div>
             </div>
         </div>
@@ -81,13 +55,7 @@
         </div>
     </div>
 
-    <div id="main" class="main-container"></div>
-
-    <!-- <div class="modal">
-        <h1>hai trovato il primo marker</h1>
-    </div> -->
-
-    <input type="button" id="nextLevel" style="display: none;"/>
+    <input type="button" id="nextLevel" style="display: none;" />
 
 </body>
 
