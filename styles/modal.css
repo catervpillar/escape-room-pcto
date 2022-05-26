@@ -1,0 +1,30 @@
+.modal {
+    transition: opacity .5s ease-out;
+    opacity: 0;
+    height: 0;
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-reveal {
+    z-index: 1000;
+    opacity: 1;
+    height: 100%;
+}
+
+.modal-content {
+    /* background-color: #fefefe; */
+    margin: 15% auto;
+    padding: 20px;
+    /* border: 1px solid #888; */
+    max-width: 800px;
+    color: #fff;
+    text-align: center;
+}

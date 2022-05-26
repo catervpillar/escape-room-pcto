@@ -4,9 +4,9 @@
     border-radius: .5em;
     padding: 10px; */
     cursor: move;
-  }
+}
 
-.marker-image{
+.marker-image {
     width: 30px;
     height: 30px;
     border-radius: 0%;
@@ -15,4 +15,3 @@
     /* cursor: pointer; */
     /* background-color: red; */
 }
-  

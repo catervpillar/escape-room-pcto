@@ -1,0 +1,21 @@
+.marker {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    /* background-color: transparent; */
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border: 3px solid #fff;
+    font-size: 18px;
+    transition: all ease-in .5s;
+}
+
+.visited-marker {
+    background-color: rgb(9, 113, 54);
+    /* pointer-events: none; */
+}

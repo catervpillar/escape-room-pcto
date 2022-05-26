@@ -6,23 +6,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape Room PCTO</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/drag-and-drop.css">
+    <link rel="stylesheet" href="./styles/marker.css">
+    <link rel="stylesheet" href="./styles/modal.css">
+    <link rel="stylesheet" href="./styles/sidebar.css">
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(function () {
+            $("#main").load("./level1/level1.html");
+        });
+    </script>
+    <script type="text/javascript" src="./scripts/app.js"></script>
+    <script type="text/javascript" src="./level2/draganddrop.js"></script>
+    <script type="text/javascript" src="./level1/level1.js"></script>
 </head>
 
 <body>
-    <div class="main-container">
-        <img src="./assets/images/messy_desk_medium.jpg" alt="" class="background-img">
-        <a id="marker1" class="marker" style="top: 50%; left: 35%;"></a>
-        <a id="marker2" class="marker" style="top: 60%; left: 35%;"></a>
-        <a id="marker3" class="marker" style="top: 70%; left: 35%;"></a>
-        <a id="marker4" class="marker" style="top: 80%; left: 35%;"></a>
+    <div class="modal" id="modalMarker1">
+        <div class="modal-content">
+            <h1>Hai trovato il primo oggetto!</h1>
+        </div>
     </div>
 
-    <div class="modal">
+    <div class="modal" id="modalMarker2">
+        <div class="modal-content">
+            <h1>Hai trovato il secondo oggetto!</h1>
+        </div>
+    </div>
+
+    <div class="modal" id="modalMarker3">
+        <div class="modal-content">
+            <h1>Hai trovato il terzo oggetto!</h1>
+        </div>
+    </div>
+
+    <div class="modal" id="modalMarker4">
+        <div class="modal-content">
+            <h1>Hai trovato il quarto oggetto!</h1>
+        </div>
+    </div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <div class="sidebar-content">
+            <div class="reveal">
+                <h1>Livello 1</h1>
+                <p>Ispezione l'immagine e trova gli oggetti nascosti con cui interagire!</p>
+            </div>
+
+            <div class="level-score reveal">
+                <p>Oggetti trovati:</p>
+                <h2 id="score-label">0/4</h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="main" class="main-container"></div>
+
+    <!-- <div class="modal">
         <h1>hai trovato il primo marker</h1>
-    </div>
+    </div> -->
 
-    <script type="text/javascript" src="./app.js"></script>
 </body>
 
 </html>
