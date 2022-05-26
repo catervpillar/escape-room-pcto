@@ -28,14 +28,24 @@
     border-radius: 50px;
 }
 
+.page-content {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.image-container {
+    height: 100%;
+    width: 100%;
+    background-color: rebeccapurple;
+    overflow: hidden;
+}
+
 .main-container {
-    /* background: url(./assets/images/messy_desk.jpg);
-    background-position: center;
-    background-size: cover; */
     width: 1280px;
     height: 720px;
-    /* width: 800px;
-    height: 500px; */
     position: relative;
     overflow: auto;
 }
