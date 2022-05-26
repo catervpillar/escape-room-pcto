@@ -14,9 +14,21 @@
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script>
-        $(function () {
-            $("#main").load("./level1/level1.html");
+        $(document).ready(function () {
+            var level = 1;
+            $("#main").load("./level" + level + "/level" + level + ".html");
+
+            $("#nextLevel").click(function () {
+                level++;
+                $("#main").load("./level" + level + "/level" + level + ".html");
+            });
         });
+        // $(function () {
+        //     var level = 0;
+
+
+        //     $("#main").load("./level1/level1.html");
+        // });
     </script>
     <script type="text/javascript" src="./scripts/app.js"></script>
     <script type="text/javascript" src="./level2/draganddrop.js"></script>
@@ -68,6 +80,8 @@
     <!-- <div class="modal">
         <h1>hai trovato il primo marker</h1>
     </div> -->
+
+    <input type="button" id="nextLevel" style="display: none;"/>
 
 </body>
 

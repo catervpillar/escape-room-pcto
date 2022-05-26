@@ -51,6 +51,9 @@ window.addEventListener('load', () => {
         marker4.classList.add('visited-marker');
         modalMarker4.classList.toggle('modal-reveal');
         scoreLabel.innerText = `${++score}/${markers.length}`
+        if(score == 4){
+            document.getElementById("nextLevel").click();
+        }
     }
 
     // When the user clicks anywhere outside of the modal, close it
