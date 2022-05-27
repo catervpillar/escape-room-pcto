@@ -15,3 +15,13 @@
     /* cursor: pointer; */
     /* background-color: red; */
 }
+
+.marker-empty {
+    width: 30px;
+    height: 30px;
+    border-radius: 0%;
+    position: absolute;
+    background-color: transparent;
+    cursor: default;
+    /* background-color: red; */
+}
