@@ -99,6 +99,8 @@ body {
     -ms-user-select: none;
 }
 
+/*START SCREEN*/
+
 #start-screen {
     background-color: #000;
 }
@@ -115,12 +117,15 @@ body {
     padding: 5px 20px;
     border-radius: 10px;
     cursor: pointer;
-    background-color: red;
+    background-color: rgb(200, 0, 0);
     color: #fff;
+    animation: shakeButtonAnimation 4s ease-out none infinite;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
 }
 
 #start-screen .play-button:hover {
-    background-color: rgb(160, 0, 0);
+    background-color: rgb(100, 0, 0);
 }
 
 #start-screen .play-button:active {
@@ -128,11 +133,174 @@ body {
     color: #000;
 }
 
+@keyframes shakeButtonAnimation {
+    0% {
+        transform: rotate(0);
+    }
+
+    2% {
+        transform: rotate(5deg);
+    }
+
+    4% {
+        transform: rotate(0deg);
+        background-color: rgb(201, 83, 37);
+    }
+
+    6% {
+        transform: rotate(-5deg);
+    }
+
+    8% {
+        transform: rotate(0);
+    }
+
+    10% {
+        transform: rotate(5deg);
+    }
+
+    12% {
+        transform: rotate(0deg);
+    }
+
+    14% {
+        transform: rotate(-5deg);
+    }
+
+    16% {
+        transform: rotate(0);
+        background-color: rgb(200, 0, 0);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
 #start-screen .title h1 {
     font-size: 48px;
     color: #fff;
     margin-top: 200px;
 }
+
+.circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles div {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 4vw;
+}
+
+.circles div:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles div:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles div:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles div:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles div:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles div:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles div:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles div:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles div:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles div:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+@keyframes animate {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
+
+/*END SCREEN*/
 
 #end-screen {
     background-color: #000;
