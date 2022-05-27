@@ -1,5 +1,26 @@
-let answers = ["Bianco", "Nero", "Fuchsia", "Napoleone aveva una capra, non un cavallo!"];
-const correctAnswer = "bianco";
+let q1 = {
+    question: "Di che colore era il cavallo bianco di Napoleone?",
+    answers: ["Bianco", "Nero", "Fuchsia", "Napoleone aveva una capra, non un cavallo!"],
+    correctAnswer: "bianco"
+}
+
+let q2 = {
+    question: "Le tende da sole… soffrono di solitudine?",
+    answers: ["Si", "No", "Ma vaff..."],
+    correctAnswer: "Ma vaff..."
+}
+
+let q3 = {
+    question: "Perché i gatti hanno i canini, ma i cani non hanno i gattini?",
+    answers: ["Mistero della fede", "Non è vero, i cani hanno i gattini"],
+    correctAnswer: "Mistero della fede"
+}
+
+let q4 = {
+    question: "Ma perché si chiama carta da parati e non da pareti?",
+    answers: ["Si sono evidentemente sbagliati a nominarla", "Boh", "Suona meglio"],
+    correctAnswer: "Si sono evidentemente sbagliati a nominarla"
+}
 
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
@@ -19,11 +40,8 @@ function shuffle(array) {
     return array;
 }
 
-shuffle(answers);
-document.getElementById("modalMarke1Answer1").innerText = answers[0];
-document.getElementById("modalMarke2Answer2").innerText = answers[1];
-document.getElementById("modalMarke3Answer3").innerText = answers[2];
-document.getElementById("modalMarke4Answer4").innerText = answers[3];
+shuffle(q1.answers);
+shuffle(q2.answers);
 
 const markers = document.querySelectorAll('.marker');
 
@@ -31,53 +49,49 @@ const marker1 = document.getElementById('marker1');
 const marker2 = document.getElementById('marker2');
 const marker3 = document.getElementById('marker3');
 const marker4 = document.getElementById('marker4');
-var modalMarker1 = document.getElementById("modalMarker1");
-var modalMarker2 = document.getElementById("modalMarker2");
-var modalMarker3 = document.getElementById("modalMarker3");
-var modalMarker4 = document.getElementById("modalMarker4");
-const scoreLabel = document.getElementById('score-label');
+var questionModal = document.getElementById("questionModal");
+
 let score = 0;
 
-marker1.addEventListener('click', () => { setVisibleMarker(marker1); marker1Function() });
-marker2.addEventListener('click', () => { setVisibleMarker(marker2); marker2Function() });
-marker3.addEventListener('click', () => { setVisibleMarker(marker3); marker3Function() });
-marker4.addEventListener('click', () => { setVisibleMarker(marker4); marker4Function() });
+marker1.addEventListener('click', () => { openQuestionModal(q1); setVisibleMarker(marker1); });
+marker2.addEventListener('click', () => { openQuestionModal(q2); setVisibleMarker(marker2); });
+marker3.addEventListener('click', () => { openQuestionModal(q3); setVisibleMarker(marker3); });
+marker4.addEventListener('click', () => { openQuestionModal(q4); setVisibleMarker(marker4); });
 
 function setVisibleMarker(marker) {
     marker.classList.toggle('visited-marker');
     marker.innerText = '!';
 }
 
-function marker1Function(event) {
-    modalMarker1.classList.toggle('modal-reveal');
-}
+function openQuestionModal(q) {
+    document.getElementById("question").innerText = q.question;
+    const answersContainer = document.getElementById('answers-container');
 
-function marker2Function(event) {
-    modalMarker2.classList.toggle('modal-reveal');
-}
-
-function marker3Function(event) {
-    modalMarker3.classList.toggle('modal-reveal');
-}
-
-function marker4Function(event) {
-    modalMarker4.classList.toggle('modal-reveal');
-    if (score == 4) {
-        document.getElementById("nextLevel").click();
+    var child = answersContainer.lastElementChild;
+    while (child) {
+        answersContainer.removeChild(child);
+        child = answersContainer.lastElementChild;
     }
+
+    for (let i = 0; i < q.answers.length; i++) {
+        const answerButton = document.createElement('div');
+        answerButton.classList.add('answer-button');
+        answerButton.innerText = q.answers[i];
+        answerButton.addEventListener('click', () => { selectAnswer(answerButton, q) });
+
+        answersContainer.appendChild(answerButton);
+    }
+    questionModal.classList.toggle('modal-reveal');
 }
 
-function selectAnswer(el) {
-    if (el.innerText.toUpperCase() == correctAnswer.toUpperCase()) {
-        scoreLabel.innerText = `${++score}/${markers.length}`
+function selectAnswer(el, question) {
+    if (el.innerText.toUpperCase() == question.correctAnswer.toUpperCase()) {
+        el.classList.add("correct-answer");
+        setTimeout(() => {
+            questionModal.classList.toggle('modal-reveal');
+            document.getElementById('score-label').innerText = `${++score}/${markers.length}`;
+        }, 3000);
     } else {
         el.classList.add("wrong-answer");
     }
 }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function (event) {
-//     if (event.target == modalMarker1 || event.target == modalMarker2 || event.target == modalMarker3 || event.target == modalMarker4) {
-//         event.target.classList.toggle('modal-reveal');
-//     }
-// }

@@ -3,7 +3,6 @@
     height: 30px;
     border-radius: 50%;
     position: absolute;
-    /* background-color: transparent; */
     cursor: pointer;
     background-color: transparent;
     display: flex;
@@ -24,5 +23,5 @@
     background-color: rgb(9, 113, 54);
     border-color: #fff;
     color: #fff;
-    /* pointer-events: none; */
+    pointer-events: none;
 }
