@@ -39,7 +39,7 @@
 .image-container {
     height: 100%;
     width: 100%;
-    background-color: rebeccapurple;
+    background-color: #000;
     overflow: hidden;
 }
 
@@ -54,4 +54,16 @@
     .main-container {
         display: none;
     }
+}
+
+.reveal {
+    position: relative;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: .8s all ease;
+}
+
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
 }

@@ -9,13 +9,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    border: 3px solid #fff;
+    color: transparent;
+    border: 3px solid transparent;
     font-size: 18px;
     transition: all ease-in .5s;
 }
 
+.marker:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
 .visited-marker {
     background-color: rgb(9, 113, 54);
+    border-color: #fff;
+    color: #fff;
     /* pointer-events: none; */
 }
