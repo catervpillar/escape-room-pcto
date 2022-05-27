@@ -9,7 +9,6 @@ function handleDragStart(e) {
     // this.style.opacity = '0.4';
 
     dragSrcEl = this;
-    console.log(dragSrcEl);
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', this.innerHTML);
 }
@@ -58,11 +57,11 @@ items.forEach(function (item) {
     item.addEventListener('drop', handleDrop);
 });
 
-window.onclick = function (event) {
-    if (event.target == modalMarker4) {
-        event.target.classList.toggle('modal-reveal');
-    }
-}
+// window.onclick = function (event) {
+//     if (event.target == modalMarker4) {
+//         event.target.classList.toggle('modal-reveal');
+//     }
+// }
 
 function giveResponse(){
     res = document.getElementById("cavallo").value;
