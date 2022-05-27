@@ -22,6 +22,6 @@
     border-radius: 0%;
     position: absolute;
     background-color: transparent;
-    cursor: default;
+    /* cursor: default; */
     /* background-color: red; */
 }

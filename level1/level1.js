@@ -52,6 +52,7 @@ window.addEventListener('load', () => {
         modalMarker4.classList.toggle('modal-reveal');
         scoreLabel.innerText = `${++score}/${markers.length}`
         if(score == 4){
+            console.log("score uguale 4");
             document.getElementById("nextLevel").click();
         }
     }
