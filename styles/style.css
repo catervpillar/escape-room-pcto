@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Changa:wght@200;300;400;500;600;700;800&display=swap');
 
+body {
+    background-color: #000;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Changa', sans-serif;
-    /* background-color: #000; */
 }
 
 ::-webkit-scrollbar {
@@ -28,22 +31,54 @@
     border-radius: 50px;
 }
 
-.page-content {
-    display: flex;
+.reveal {
+    position: relative;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: .8s all ease;
+}
+
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#stage {
     height: 100vh;
     width: 100vw;
+}
+
+.screen {
+    position: absolute;
+    height: 0;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity .5s ease-in;
+}
+
+.show-screen {
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: 100% !important;
+    z-index: 1 !important;
+}
+
+.page-content {
+    display: flex;
     z-index: 1;
     overflow: hidden;
 }
 
-.image-container {
+.page-content .image-container {
     height: 100%;
     width: 100%;
     background-color: #000;
     overflow: hidden;
 }
 
-.main-container {
+.page-content .main-container {
     width: 1280px;
     height: 720px;
     position: relative;
@@ -56,22 +91,83 @@
     }
 }
 
-img {  
-    /* drag: none;   */
+.page-content img {
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
- }
-.reveal {
-    position: relative;
-    transform: translateY(30px);
-    opacity: 0;
-    transition: .8s all ease;
 }
 
-.reveal.active {
-    transform: translateY(0);
-    opacity: 1;
+#start-screen {
+    background-color: #000;
+}
+
+#start-screen .content {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+#start-screen .play-button {
+    font-size: 28px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: red;
+    color: #fff;
+}
+
+#start-screen .play-button:hover {
+    background-color: rgb(160, 0, 0);
+}
+
+#start-screen .play-button:active {
+    background-color: #fff;
+    color: #000;
+}
+
+#start-screen .title h1 {
+    font-size: 48px;
+    color: #fff;
+    margin-top: 200px;
+}
+
+#end-screen {
+    background-color: #000;
+}
+
+#end-screen .content {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+}
+
+#end-screen .exit-button {
+    margin-top: 50px;
+    font-size: 22px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(6, 96, 67);
+    color: #fff;
+}
+
+#end-screen .exit-button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+#end-screen .play-button:active {
+    background-color: #fff;
+    color: #000;
+}
+
+#end-screen .title h1 {
+    font-size: 48px;
+    color: #fff;
+    margin-top: 200px;
 }

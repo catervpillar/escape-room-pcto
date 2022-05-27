@@ -1,3 +1,30 @@
+let answers = ["Bianco", "Nero", "Fuchsia", "Napoleone aveva una capra, non un cavallo!"];
+const correctAnswer = "bianco";
+
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
+shuffle(answers);
+document.getElementById("modalMarke1Answer1").innerText = answers[0];
+document.getElementById("modalMarke2Answer2").innerText = answers[1];
+document.getElementById("modalMarke3Answer3").innerText = answers[2];
+document.getElementById("modalMarke4Answer4").innerText = answers[3];
+
 const markers = document.querySelectorAll('.marker');
 
 const marker1 = document.getElementById('marker1');
@@ -11,45 +38,46 @@ var modalMarker4 = document.getElementById("modalMarker4");
 const scoreLabel = document.getElementById('score-label');
 let score = 0;
 
-marker1.addEventListener('click', marker1Function);
-marker2.addEventListener('click', marker2Function);
-marker3.addEventListener('click', marker3Function);
-marker4.addEventListener('click', marker4Function);
+marker1.addEventListener('click', () => { setVisibleMarker(marker1); marker1Function() });
+marker2.addEventListener('click', () => { setVisibleMarker(marker2); marker2Function() });
+marker3.addEventListener('click', () => { setVisibleMarker(marker3); marker3Function() });
+marker4.addEventListener('click', () => { setVisibleMarker(marker4); marker4Function() });
+
+function setVisibleMarker(marker) {
+    marker.classList.toggle('visited-marker');
+    marker.innerText = '!';
+}
 
 function marker1Function(event) {
-    marker1.classList.add('visited-marker');
     modalMarker1.classList.toggle('modal-reveal');
-    marker1.innerText = '!';
-    scoreLabel.innerText = `${++score}/${markers.length}`
 }
 
 function marker2Function(event) {
-    marker2.classList.add('visited-marker');
     modalMarker2.classList.toggle('modal-reveal');
-    marker2.innerText = '!';
-    scoreLabel.innerText = `${++score}/${markers.length}`
 }
 
 function marker3Function(event) {
-    marker3.classList.add('visited-marker');
     modalMarker3.classList.toggle('modal-reveal');
-    marker3.innerText = '!';
-    scoreLabel.innerText = `${++score}/${markers.length}`
 }
 
 function marker4Function(event) {
-    marker4.classList.add('visited-marker');
     modalMarker4.classList.toggle('modal-reveal');
-    marker4.innerText = '!';
-    scoreLabel.innerText = `${++score}/${markers.length}`
     if (score == 4) {
         document.getElementById("nextLevel").click();
     }
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modalMarker1 || event.target == modalMarker2 || event.target == modalMarker3 || event.target == modalMarker4) {
-        event.target.classList.toggle('modal-reveal');
+function selectAnswer(el) {
+    if (el.innerText.toUpperCase() == correctAnswer.toUpperCase()) {
+        scoreLabel.innerText = `${++score}/${markers.length}`
+    } else {
+        el.classList.add("wrong-answer");
     }
 }
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function (event) {
+//     if (event.target == modalMarker1 || event.target == modalMarker2 || event.target == modalMarker3 || event.target == modalMarker4) {
+//         event.target.classList.toggle('modal-reveal');
+//     }
+// }
