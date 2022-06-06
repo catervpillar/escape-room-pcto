@@ -49,3 +49,7 @@
     padding: 20px;
     text-align: center;
 }
+
+#pc-screen .image-container img {
+    max-width: 400px;
+}

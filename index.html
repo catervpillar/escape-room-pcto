@@ -88,8 +88,10 @@
             </div>
             <div class="content reveal from-bottom">
                 <p>CIAO! Benvenutæ in questa Escape Room.</p>
-                <p>Ispeziona minuziosamente le varie ambientazioni della mappa per scovare punti di interazione nascosti.
-                    Se risponderai correttamente ai quesiti che ti verranno posti, avrai la possibilità di ottenere le diverse 
+                <p>Ispeziona minuziosamente le varie ambientazioni della mappa per scovare punti di interazione
+                    nascosti.
+                    Se risponderai correttamente ai quesiti che ti verranno posti, avrai la possibilità di ottenere le
+                    diverse
                     componenti che ti saranno necessarie per assemblare un PC.
                 </p>
                 <p>Buona fortuna!</p>
@@ -248,6 +250,21 @@
                 </div>
                 <div class="image-container reveal from-bottom">
                     <img id="reward-img" src="">
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL DETTAGLI -->
+        <div id="inventory-item-details-modal" class="modal">
+            <span class="material-icons md-36 close-button right"
+                onclick="showModal('inventory-item-details-modal')">close</span>
+            <div class="content reveal from-bottom">
+                <div class="image-container">
+                    <img id="item-img" src="" alt="">
+                </div>
+                <div>
+                    <h2 id="item-name"></h2>
+                    <p id="item-description"></p>
                 </div>
             </div>
         </div>

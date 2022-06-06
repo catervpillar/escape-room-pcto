@@ -60,6 +60,8 @@
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    pointer-events: none;
+    transition: all .3s ease;
 }
 
 #inventory-modal #inventory-items-container .inventory-item p {
@@ -83,6 +85,11 @@
     opacity: .3;
 }
 
+#inventory-modal #inventory-items-container .unlocked-item {
+    pointer-events: all;
+    cursor: pointer;
+}
+
 #inventory-modal #inventory-items-container .unlocked-item .overlay {
     display: none;
 }
@@ -93,4 +100,27 @@
 
 #inventory-modal #inventory-items-container .unlocked-item p {
     visibility: visible;
+}
+
+#inventory-modal #inventory-items-container .unlocked-item:hover {
+    border-color: #fff;
+}
+
+#inventory-item-details-modal .image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#inventory-item-details-modal .image-container img {
+    max-width: 250px;
+}
+
+
+#inventory-item-details-modal #item-name {
+    font-size: 32px;
+}
+
+#inventory-item-details-modal #item-description {
+    font-size: 18px;
 }
