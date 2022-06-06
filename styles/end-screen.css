@@ -1,0 +1,51 @@
+#end-screen .content {
+    text-align: center;
+    margin-top: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+#end-screen .content h1 {
+    text-align: center;
+    font-size: 44px;
+}
+
+#end-screen .content h2 {
+    text-align: center;
+    font-size: 28px;
+}
+
+#end-screen .content button {
+    margin-top: 100px;
+    font-size: 28px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(200, 0, 0);
+    color: #fff;
+    transition: all 0.5s ease;
+}
+
+#end-screen .content button:hover {
+    background-color: rgb(100, 0, 0);
+}
+
+#end-screen .content button:active {
+    background-color: #fff;
+    color: #000;
+}
+
+#pc-screen h1 {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#pc-screen .image-container {
+    margin-top: 30px;
+    padding: 20px;
+    text-align: center;
+}

@@ -5,93 +5,351 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Room PCTO</title>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/drag-and-drop.css">
-    <link rel="stylesheet" href="./styles/marker.css">
-    <link rel="stylesheet" href="./styles/modal.css">
-    <link rel="stylesheet" href="./styles/sidebar.css">
+    <title>Escape Room</title>
+
+    <link rel="icon" href="/assets/icon.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <script src="./scripts/jquery-1.10.2.js"></script>
-    <script>
-        $().ready(function () {
-            var level = 1;
-
-            function loadComponent() {
-                console.log(level);
-                $.get("./level" + level + "/level" + level + "modal.html", function (modal) {
-                    $("#page-content").prepend(modal);
-                }, 'html');
-                $("#sidebarLevel").load("./level" + level + "/level" + level + "sidebar.html");
-                $("#main").load("./level" + level + "/level" + level + ".html");
-            }
-
-            loadComponent();
-
-            $("#nextLevel").click(function () {
-                level++;
-                loadComponent();
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="./styles/loader.css">
+    <link rel="stylesheet" href="./styles/app.css">
+    <link rel="stylesheet" href="./styles/animated-background.css">
+    <link rel="stylesheet" href="./styles/action-toolbar.css">
+    <link rel="stylesheet" href="./styles/modal.css">
+    <link rel="stylesheet" href="./styles/start-screen.css">
+    <link rel="stylesheet" href="./styles/end-screen.css">
+    <link rel="stylesheet" href="./styles/map.css">
+    <link rel="stylesheet" href="./styles/inventory.css">
+    <link rel="stylesheet" href="./styles/help.css">
 </head>
 
 <body>
-    <div id="stage">
-        <div id="start-screen" class="screen">
-            <ul class="circles">
-                <div>?</div>
-                <div>?</div>
-                <div>?</div>
-                <div>?</div>
-                <div>?</div>
-                <div>?</div>
-                <div>?</div>
-                <div>?</div>
-                <div>?</div>
-                <div>?</div>
-            </ul>
+    <ul class="circles">
+        <ui>?</ui>
+        <ui>?</ui>
+        <ui>?</ui>
+        <ui>?</ui>
+        <ui>?</ui>
+        <ui>?</ui>
+        <ui>?</ui>
+        <ui>?</ui>
+        <ui>?</ui>
+        <ui>?</ui>
+    </ul>
 
-            <div class="content reveal">
+    <div id="main">
+
+        <!-- START SCREEN -->
+        <div id="start-screen" class="screen">
+            <div class="content reveal from-bottom">
                 <div class="title">
                     <h1>Unicam Escape Room</h1>
                 </div>
-
-                <button class="play-button" onclick="showScreen('page-content')">Gioca</button>
+                <button id="play-button" onclick="showScreen('map-screen')">Gioca</button>
             </div>
         </div>
 
-        <div id="page-content" class="page-content screen">
-            <div id="mySidebar" class="sidebar">
-                <a class="exit-button" onclick="showScreen('end-screen')">ESCI</a>
-                <div class="sidebar-content reveal">
-                    <div id="sidebarLevel">
 
-                    </div>
-                </div>
+        <!-- MAP SCREEN -->
+        <div id="map-screen" class="screen">
+            <div class="close-button left" onclick="showScreen('start-screen')">
+                <span class="material-icons md-36">exit_to_app</span>
+                <p>Esci</p>
             </div>
-
-            <div class="image-container">
-                <div id="main" class="main-container"></div>
-            </div>
-        </div>
-
-        <div id="end-screen" class="screen">
-            <div class="content reveal">
+            <div class="content reveal from-bottom">
                 <div class="title">
-                    <h1>Complimenti!</h1>
-                    <p>Sei riuscito a risolvere l'escape room.</p>
+                    <span class="material-icons md-36">map</span>
+                    <h1>Mappa</h1>
                 </div>
-
-                <button class="exit-button" onclick="showScreen('start-screen')">Esci</button>
+                <div class="map-container">
+                    <div class="aula-cisco area" onclick="showScreen('aulacisco-screen')">Aula CISCO</div>
+                    <div class="distributori area" onclick="showScreen('distributori-screen')">Distributori</div>
+                    <div class="atrio area" onclick="showScreen('atrio-screen')">Atrio</div>
+                    <div class="team-lab area" onclick="showScreen('teamlab-screen')">Team LAB</div>
+                </div>
             </div>
         </div>
 
-        <input type="button" id="nextLevel" style="display: none;" />
+
+        <!-- INVENTARIO -->
+        <div id="inventory-modal" class="modal">
+            <span class="material-icons md-36 close-button right" onclick="showModal('inventory-modal')">close</span>
+            <div class="title reveal from-top">
+                <span class="material-icons md-36">backpack</span>
+                <h1>Inventario</h1>
+            </div>
+            <div id="inventory-items-container" class="reveal from-bottom"></div>
+        </div>
+
+        <!-- AIUTO -->
+        <div id="info-modal" class="modal">
+            <span class="material-icons md-36 close-button right" onclick="showModal('info-modal')">close</span>
+            <div class="title reveal from-top">
+                <span class="material-icons md-36">info</span>
+                <h1>Info</h1>
+            </div>
+            <div class="content reveal from-bottom">
+                <p>CIAO! Benvenutæ in questa Escape Room.</p>
+                <p>Ispeziona minuziosamente le varie ambientazioni della mappa per scovare punti di interazione nascosti.
+                    Se risponderai correttamente ai quesiti che ti verranno posti, avrai la possibilità di ottenere le diverse 
+                    componenti che ti saranno necessarie per assemblare un PC.
+                </p>
+                <p>Buona fortuna!</p>
+            </div>
+        </div>
+
+
+        <!-- ATRIO SCREEN -->
+        <div id="atrio-screen" class="screen black">
+            <div class="action-toolbar reveal from-top">
+                <div class="action-toolbar-button" onclick="showScreen('map-screen')">
+                    <span class="material-icons md-36">map</span>
+                    <p>Mappa</p>
+                </div>
+                <div class="action-toolbar-button" onclick="showModal('inventory-modal')">
+                    <span class="material-icons md-36">backpack</span>
+                    <p>Inventario</p>
+                </div>
+                <div class="action-toolbar-button" onclick="showModal('info-modal')">
+                    <span class="material-icons md-36">info</span>
+                    <p>Info</p>
+                </div>
+            </div>
+
+            <div class="underlay">
+                <img src="./assets/backgrounds/atrio.jpg" />
+
+                <div class="markers">
+                    <a id="atrioMarker1" class="marker" style="top: 34%; left: 48%;">?</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- TEAM LAB SCREEN -->
+        <div id="teamlab-screen" class="screen black">
+            <div class="action-toolbar reveal from-top">
+                <div class="action-toolbar-button" onclick="showScreen('map-screen')">
+                    <span class="material-icons md-36">map</span>
+                    <p>Mappa</p>
+                </div>
+                <div class="action-toolbar-button" onclick="showModal('inventory-modal')">
+                    <span class="material-icons md-36">backpack</span>
+                    <p>Inventario</p>
+                </div>
+                <div class="action-toolbar-button" onclick="showModal('info-modal')">
+                    <span class="material-icons md-36">info</span>
+                    <p>Info</p>
+                </div>
+            </div>
+
+            <div class="underlay">
+                <img src="./assets/backgrounds/teamlab.jpg" />
+
+                <div class="markers">
+                    <a id="teamLabMarker1" class="marker" style="top: 27%; left: 39%;">?</a>
+                    <a id="teamLabMarker2" class="marker" style="top: 46%; left: 28%;">?</a>
+                    <a id="teamLabMarker3" class="marker" style="top: 55%; left: 93%;">?</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- DISTRIBUTORI SCREEN -->
+        <div id="distributori-screen" class="screen black">
+            <div class="action-toolbar reveal from-top">
+                <div class="action-toolbar-button" onclick="showScreen('map-screen')">
+                    <span class="material-icons md-36">map</span>
+                    <p>Mappa</p>
+                </div>
+                <div class="action-toolbar-button" onclick="showModal('inventory-modal')">
+                    <span class="material-icons md-36">backpack</span>
+                    <p>Inventario</p>
+                </div>
+                <div class="action-toolbar-button" onclick="showModal('info-modal')">
+                    <span class="material-icons md-36">info</span>
+                    <p>Info</p>
+                </div>
+            </div>
+
+            <div class="underlay">
+                <img src="./assets/backgrounds/distributori.jpg" />
+
+                <div class="markers">
+                    <a id="distributoriMarker1" class="marker" style="top: 27%; left: 78%;">?</a>
+                    <a id="distributoriMarker2" class="marker" style="top: 6%; left: 33%;">?</a>
+                    <a id="distributoriMarker3" class="marker" style="top: 35%; left: 14.5%;">?</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- AULA CISCO SCREEN -->
+        <div id="aulacisco-screen" class="screen black">
+            <div class="action-toolbar reveal from-top">
+                <div class="action-toolbar-button" onclick="showScreen('map-screen')">
+                    <span class="material-icons md-36">map</span>
+                    <p>Mappa</p>
+                </div>
+                <div class="action-toolbar-button" onclick="showModal('inventory-modal')">
+                    <span class="material-icons md-36">backpack</span>
+                    <p>Inventario</p>
+                </div>
+                <div class="action-toolbar-button" onclick="showModal('info-modal')">
+                    <span class="material-icons md-36">info</span>
+                    <p>Info</p>
+                </div>
+            </div>
+
+            <div class="underlay">
+                <img src="./assets/backgrounds/aulacisco.jpg" />
+
+                <div class="markers">
+                    <a id="aulaCiscoMarker1" class="marker" style="top: 48%; left: 85%;">?</a>
+                    <a id="aulaCiscoMarker2" class="marker" style="top: 62%; left: 35%;">?</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- MODAL DOMANDA -->
+        <div id="multiple-choice-question-modal" class="modal">
+            <span class="material-icons md-36 close-button right"
+                onclick="showModal('multiple-choice-question-modal')">close</span>
+
+            <div class="content">
+                <h2 id="multiple-choice-question" class="reveal from-top"></h2>
+                <div id="multiple-choice-question-answers-container" class="reveal from-bottom"></div>
+            </div>
+        </div>
+
+
+        <!-- MODAL DOMANDA CON INPUT -->
+        <div id="input-question-modal" class="modal">
+            <span class="material-icons md-36 close-button right"
+                onclick="showModal('input-question-modal')">close</span>
+
+            <div class="content">
+                <h2 id="input-question" class="reveal from-top"></h2>
+                <div class="reveal from-bottom" style="margin-top: 30px;">
+                    <input id="answer-input" type="text" placeholder="Scrivi qui il risultato">
+                    <button id="check-input-value-button">Controlla risposta</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- MODAL RICOMPENSA -->
+        <div id="reward-modal" class="modal">
+            <span class="material-icons md-36 close-button right"
+                onclick="showModal('reward-modal'); checkGameStatus();">close</span>
+            <div class="content">
+                <div class="reveal from-top">
+                    <p>Hai ottenuto:</p>
+                    <h2 id="reward-name"></h2>
+                </div>
+                <div class="image-container reveal from-bottom">
+                    <img id="reward-img" src="">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- END SCREEN -->
+        <div id="end-screen" class="screen black">
+            <div class="content reveal from-bottom">
+                <h1>Complimenti!</h1>
+                <h2>Hai recuperato tutte le componenti per assemblare il PC!</h2>
+                <button onclick="showScreen('pc-screen')">Prosegui</button>
+            </div>
+
+            <ul class="pc-components">
+                <div>
+                    <img src="./assets/pc-parts/case.png" alt="">
+                </div>
+                <div>
+                    <img src="./assets/pc-parts/motherboard.png" alt="">
+                </div>
+                <div>
+                    <img src="./assets/pc-parts/cpu.png" alt="">
+                </div>
+                <div>
+                    <img src="./assets/pc-parts/ram.png" alt="">
+                </div>
+                <div>
+                    <img src="./assets/pc-parts/hard-disk.png" alt="">
+                </div>
+                <div>
+                    <img src="./assets/pc-parts/gpu.png" alt="">
+                </div>
+                <div>
+                    <img src="./assets/pc-parts/fan.png" alt="">
+                </div>
+                <div>
+                    <img src="./assets/pc-parts/monitor.png" alt="">
+                </div>
+                <div>
+                    <img src="./assets/pc-parts/keyboard-and-mouse.png" alt="">
+                </div>
+            </ul>
+        </div>
+
+
+        <!-- PC SCREEN -->
+        <div id="pc-screen" class="screen">
+            <div class="close-button left" onclick="showScreen('start-screen')">
+                <span class="material-icons md-36">exit_to_app</span>
+                <p>Esci</p>
+            </div>
+
+            <h1 class="reveal from-top">E ora, esplora il mondo dell'informatica!</h1>
+            <div class="image-container reveal from-bottom">
+                <img src="./assets/pc-parts/pc.png" alt="">
+            </div>
+        </div>
+
     </div>
 </body>
 
+<div class="se-pre-con">
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader loader-inner"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .material-icons.md-18 {
+        font-size: 18px;
+    }
+
+    .material-icons.md-24 {
+        font-size: 24px;
+    }
+
+    .material-icons.md-36 {
+        font-size: 36px;
+    }
+
+    .material-icons.md-48 {
+        font-size: 48px;
+    }
+</style>
+
 <script type="text/javascript" src="./scripts/app.js"></script>
+<script type="text/javascript" src="./scripts/inventory.js"></script>
+<script type="text/javascript" src="./scripts/modals.js"></script>
+<script type="text/javascript" src="./scripts/atrio.js"></script>
+<script type="text/javascript" src="./scripts/teamlab.js"></script>
+<script type="text/javascript" src="./scripts/aulacisco.js"></script>
+<script type="text/javascript" src="./scripts/distributori.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+<script>
+    $(window).load(function () {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut("slow");;
+    });
+</script>
 
 </html>

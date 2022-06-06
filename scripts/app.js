@@ -1,16 +1,3 @@
-window.addEventListener("scroll", reveal);
-
-// To check the scroll position on page load
-reveal();
-
-showScreen("start-screen");
-
-/**
- * Seleziona l'elemento corrispondente all'id passato in input e gli applica la classe "show-screen"
- * che lo rende visibile, togliendola a priori da tutti gli altri elementi con classe "screen".
- * 
- * @param {*} id - L'id dell'elemento da mostrare
- */
 function showScreen(id) {
     let screens = document.getElementsByClassName("screen");
 
@@ -18,22 +5,56 @@ function showScreen(id) {
         screens[i].classList.remove("show-screen");
     }
 
-    document.getElementById(id).classList.toggle("show-screen");
-}
+    if (id) {
+        document.getElementById(id).classList.add("show-screen");
 
-/**
- * To animate the entrance of the HTML components.
- */
-function reveal() {
-    var reveals = document.querySelectorAll(".reveal");
-    for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 150;
-        if (elementTop < windowHeight - elementVisible) {
-            reveals[i].classList.add("active");
-        } else {
-            reveals[i].classList.remove("active");
+        let levels = ["atrio-screen", "teamlab-screen", "distributori-screen", "aulacisco-screen"];
+        if (levels.includes(id)) {
+            if (!infoHasBeenSeen) {
+                setTimeout(() => {
+                    showModal('info-modal');
+                    infoHasBeenSeen = true;
+                }, 1500);
+            }
         }
     }
 }
+
+function shuffleArray(array) {
+    let currentIndex = array.length, randomIndex;
+
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+    return array;
+}
+
+function checkGameStatus() {
+    let allItemsRedemed = true;
+
+    for (let i = 0; i < inventoryItems.length; i++) {
+        if (!inventoryItems[i].isRedeemed)
+            allItemsRedemed = false;
+    }
+
+    if (allItemsRedemed) {
+        console.log('all items redeemed!');
+        showScreen("end-screen");
+    }
+}
+
+let gameHasStarted = false;
+let infoHasBeenSeen = false;
+
+const startButton = document.getElementById('play-button');
+startButton.addEventListener('click', () => {
+    if (!gameHasStarted) {
+        gameHasStarted = true;
+        startButton.innerText = "Continua";
+    }
+});
+
+showScreen("start-screen");

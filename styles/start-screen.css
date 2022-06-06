@@ -1,0 +1,79 @@
+#start-screen .content {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+#start-screen .title h1 {
+    font-size: 54px;
+    color: #fff;
+    margin-top: 200px;
+}
+
+#start-screen #play-button {
+    margin-top: 10px;
+    font-size: 28px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(200, 0, 0);
+    color: #fff;
+    transition: all 0.5s ease;
+    animation: shakeButtonAnimation 4s ease-out none infinite;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+}
+
+#start-screen #play-button:hover {
+    background-color: rgb(100, 0, 0);
+}
+
+#start-screen #play-button:active {
+    background-color: #fff;
+    color: #000;
+}
+
+@keyframes shakeButtonAnimation {
+    0% {
+        transform: rotate(0);
+    }
+
+    2% {
+        transform: rotate(5deg);
+    }
+
+    4% {
+        transform: rotate(0deg);
+        background-color: rgb(201, 83, 37);
+    }
+
+    6% {
+        transform: rotate(-5deg);
+    }
+
+    8% {
+        transform: rotate(0);
+    }
+
+    10% {
+        transform: rotate(5deg);
+    }
+
+    12% {
+        transform: rotate(0deg);
+    }
+
+    14% {
+        transform: rotate(-5deg);
+    }
+
+    16% {
+        transform: rotate(0);
+        background-color: rgb(200, 0, 0);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}

@@ -1,0 +1,96 @@
+#inventory-modal {
+    /* display: flex;
+    justify-content: center; */
+}
+
+#inventory-modal .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#inventory-modal .title span {
+    /* font-size: 3vw; */
+    font-size: 48px;
+}
+
+#inventory-modal .title h1 {
+    margin-left: 10px;
+    font-size: 44px;
+    /* font-size: 2.5vw; */
+}
+
+#inventory-modal #inventory-items-container {
+    margin: auto;
+    margin-top: 20px;
+    max-width: 1000px;
+    max-height: calc(100vh - (80.8px + 70px));
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+@media (min-width: 300px) {
+    #inventory-modal #inventory-items-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 600px) {
+    #inventory-modal #inventory-items-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    #inventory-modal #inventory-items-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+#inventory-modal #inventory-items-container .inventory-item {
+    background-color: rgb(45, 45, 45);
+    border: 1px solid rgb(60, 60, 60);
+    color: rgb(190, 190, 190);
+    text-align: center;
+    padding: 25px 10px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+#inventory-modal #inventory-items-container .inventory-item p {
+    visibility: hidden;
+}
+
+#inventory-modal #inventory-items-container .inventory-item .overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#inventory-modal #inventory-items-container .inventory-item img {
+    max-width: 50%;
+    opacity: .3;
+}
+
+#inventory-modal #inventory-items-container .unlocked-item .overlay {
+    display: none;
+}
+
+#inventory-modal #inventory-items-container .unlocked-item img {
+    opacity: 1;
+}
+
+#inventory-modal #inventory-items-container .unlocked-item p {
+    visibility: visible;
+}
