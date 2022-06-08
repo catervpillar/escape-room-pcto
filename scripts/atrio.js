@@ -19,7 +19,3 @@ let atrioQuestions = [
 document.getElementById('atrioMarker1').addEventListener('click', () => {
     showQuestion(atrioQuestions[0]);
 });
-
-function controllaStatoAtrio() {
-    // return domanda1Atrio.isSolved;
-}

@@ -1,3 +1,24 @@
+/**
+ * HTML encoder functions to prevent XSS from user input values.
+ * 
+ * @param {*} str the string to encode
+ * @returns the encoded string
+ */
+function htmlEncode(str) {
+    return String(str).replace(/[^\w. ]/gi, function (c) {
+        return '&#' + c.charCodeAt(0) + ';';
+    });
+}
+
+/**
+ * Hides all the screens with class "screen" and shows only the one corresponding to the id
+ * given as input.
+ * If the screen to show corresponds to the screen of one of the levels of the game and if
+ * it's the first time a level's screen is shown (i.e. the variable "infoHasBeenSeen"
+ * is false), the info modal will be shown too.
+ * 
+ * @param {*} id the id of the screen to show
+ */
 function showScreen(id) {
     let screens = document.getElementsByClassName("screen");
 
@@ -20,6 +41,12 @@ function showScreen(id) {
     }
 }
 
+/**
+ * Shuffles the items of the array given as input.
+ * 
+ * @param {*} array the array to shuffle
+ * @returns the shuffled array
+ */
 function shuffleArray(array) {
     let currentIndex = array.length, randomIndex;
 
@@ -32,6 +59,10 @@ function shuffleArray(array) {
     return array;
 }
 
+/**
+ * Checks if all items of the inventory have been redeemed.
+ * If so, the end screen of the game is shown.
+ */
 function checkGameStatus() {
     let allItemsRedemed = true;
 
@@ -40,10 +71,8 @@ function checkGameStatus() {
             allItemsRedemed = false;
     }
 
-    if (allItemsRedemed) {
-        console.log('all items redeemed!');
+    if (allItemsRedemed)
         showScreen("end-screen");
-    }
 }
 
 let gameHasStarted = false;

@@ -52,16 +52,3 @@ document.getElementById('distributoriMarker2').addEventListener('click', () => {
 document.getElementById('distributoriMarker3').addEventListener('click', () => {
     showQuestion(distributoriQuestions[2]);
 });
-
-function controllaStatoDistributori() {
-    // let livelloCompletato = true;
-
-    // if (!domanda1Distributori.quesitoRisolto)
-    //     livelloCompletato = false;
-    // if (!domanda2Distributori.quesitoRisolto)
-    //     livelloCompletato = false;
-    // if (!domanda3Distributori.quesitoRisolto)
-    //     livelloCompletato = false;
-
-    // return livelloCompletato;
-}

@@ -64,16 +64,24 @@ inventoryItems = [
     }
 ]
 
+/**
+ * Creates and returns an HTML element for an item of the inventory to append to its parent container.
+ * 
+ * @param {*} item the item object to add as an HMTL element.
+ * @returns the HTML element
+ */
 function getInventoryItemHTMLElement(item) {
     let el = document.createElement('div');
     el.id = `${item.id}-inventory-item`;
     el.classList.add('inventory-item');
+
     el.innerHTML = `
     <img src="${item.imgSrc}" alt="">
     <p>${item.name}</p>
     <div class="overlay">
         <span class="material-icons md-36">lock</span>
     </div>`;
+
     el.onclick = () => {
         openItemDetails(item);
     };
@@ -81,6 +89,12 @@ function getInventoryItemHTMLElement(item) {
     return el;
 }
 
+/**
+ * Puts the details of the item given as input inside the apposite modal screen and
+ * shows it.
+ * 
+ * @param {*} item the item whose details are to be shown.
+ */
 function openItemDetails(item) {
     document.getElementById("item-name").innerText = item.name;
     document.getElementById("item-description").innerText = item.description;

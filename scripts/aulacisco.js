@@ -37,14 +37,3 @@ document.getElementById('aulaCiscoMarker1').addEventListener('click', () => {
 document.getElementById('aulaCiscoMarker2').addEventListener('click', () => {
     showQuestion(aulaCiscoQuestions[1]);
 });
-
-function controllaStatoAulaCisco() {
-    // let livelloCompletato = true;
-
-    // if (!domanda1AulaCisco.isSolved)
-    //     livelloCompletato = false;
-    // if (!domanda2AulaCisco.quesitoRisolto)
-    //     livelloCompletato = false;
-
-    // return livelloCompletato;
-}

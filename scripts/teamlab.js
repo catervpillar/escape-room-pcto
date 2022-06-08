@@ -51,16 +51,3 @@ document.getElementById('teamLabMarker2').addEventListener('click', () => {
 document.getElementById('teamLabMarker3').addEventListener('click', () => {
     showQuestion(teamlabQuestions[2]);
 });
-
-function controllaStatoTeamLab() {
-    // let livelloCompletato = true;
-
-    // if (!domanda1TeamLab.quesitoRisolto)
-    //     livelloCompletato = false;
-    // if (!domanda2TeamLab.quesitoRisolto)
-    //     livelloCompletato = false;
-    // if (!domanda3TeamLab.quesitoRisolto)
-    //     livelloCompletato = false;
-
-    // return livelloCompletato;
-}
