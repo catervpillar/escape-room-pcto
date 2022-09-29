@@ -5,7 +5,8 @@ let distributoriQuestions = [
         questionType: "input",
         question: "Seleziona il prodotto inserendo un numero (che dovresti già sapere):",
         answers: null,
-        correctAnswers: ["52"],
+        // correctAnswers: ["52"],
+        correctAnswers: ["43"],
         isSolved: false,
         rewardId: "ram"
     },
