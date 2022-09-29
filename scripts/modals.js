@@ -76,8 +76,8 @@ function selectAnswer(button, question) {
         button.classList.add("wrong-answer");
     }
     setTimeout(() => {
-        showModal('multiple-choice-question-modal');
         if (question.isSolved == true) {
+            showModal('multiple-choice-question-modal');
             document.getElementById(question.markerId).classList.toggle("disabled-marker");
             showRewardModal(question);
         }
@@ -121,8 +121,8 @@ function checkInputValue(inputValue, question) {
         answerInput.classList.add('wrong-input-typed');
     }
     setTimeout(() => {
-        showModal('input-question-modal');
         if (question.isSolved) {
+            showModal('input-question-modal');
             document.getElementById(question.markerId).classList.toggle("disabled-marker");
             showRewardModal(question);
         }
