@@ -6,9 +6,9 @@ let teamlabQuestions = [
         // question: "Qual è il risultato della moltiplicazione dei seguenti numeri binari?: 11010 x 10",
         // answers: null,
         // correctAnswers: ["52"],
-        question: "Qual è il risultato della somma dei seguenti numeri?: 27 + 16",
+        question: "3x + 5x - 24 = 0. Quanto vale la x?",
         answers: null,
-        correctAnswers: ["43"],
+        correctAnswers: ["3"],
         isSolved: false,
         rewardId: "cpu"
     },
